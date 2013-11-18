@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{set 'moreScripts'}
+  #{script 'wmd/Markdown.Converter.js'/}
+  #{script 'wmd/Markdown.Sanitizer.js'/}
+  #{script 'wmd/Markdown.Editor.js'/}
+  #{script 'wmd/init.js'/}
+  #{script 'app/views/boards/index.js'/}
+#{/set}
+
+#{set 'moreStyles'}
+  #{stylesheet 'wmd.css'/}
+#{/set}
+
+<div class="container-1100" ng-app="boardApp" 
+                            ng-controller="BoardIndexCtrl" ng-init="init()">
+
+  <div class="container-box row">
+    <div class="col-md-4">
+      <div class="panel panel-default" data-spy="affix">
+			  <div class="panel-heading">
+			  ${board.name}
+			  <!-- Button trigger modal -->
+				<button class="pull-right btn btn-xs btn-success" 
+				        data-toggle="modal" data-target="#editModal">发布</button>
+			  </div>
+			  <div class="panel-body topic-list">
+		       <table class="table table-hover table-condensed">
+		         <tr ng-repeat="t in topics" 
+		             ng-click="openTopic(t.id)"
+		             ng-class="{'active' : t.selected}" class="topic-links">
+		           <td><a>{{t.title}}</a></td>
+		           <td><span>+14</span></td>
+		         </tr>
+		       </table>
+			  </div>
+			</div>
+    </div>
+    
+    <div class="col-md-8 minheight-600">
+	    <div ng-hide="hideBoardDetail">${board?.detail}</div>
+	    <div ng-hide="hideOpenedTopic">#{include 'Boards/openedTopic.html'/}</div>
+    </div><!-- col-md-8 -->
+  </div><!-- container-1100 -->
+  
+  #{include 'Boards/createTopic.html'/}
+  
+</div>

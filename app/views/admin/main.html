@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="UTF-8">
+        #{include 'assets.html'/}
+        <script type="text/javascript">
+          var ctx = "@{Application.index()}";
+        </script>
+    </head>
+    <body>
+        #{include 'Admin/header.html'/}
+        #{doLayout /}
+        #{include 'Application/footer.html'/}
+    </body>
+</html>

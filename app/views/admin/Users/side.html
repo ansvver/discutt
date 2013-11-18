@@ -1,0 +1,8 @@
+<ul class="nav nav-pills nav-stacked">
+  <li class="#{if request.path == '/admin/users/list'}active#{/if}">
+    <a href="@{admin.Users.list()}">用户管理</a>
+  </li>
+  <li class="#{if request.path == '/admin/users/groups'}active#{/if}">
+    <a href="@{admin.Users.groups()}">用户组管理</a>
+  </li>
+</ul>

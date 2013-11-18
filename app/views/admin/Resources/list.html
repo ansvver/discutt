@@ -1,0 +1,28 @@
+#{extends 'Admin/Resources/base.html' /}
+#{set title:'Home' /}
+      <div><a href="@{admin.Resources.edit()}" class="btn btn-success">添加</a></div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>资源别名</th>
+            <th>资源地址</th>
+            <th>访问类型</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          #{list resources, as:'r'}
+          <tr>
+            <td>${r.id}</td>
+            <td>${r.name}</td>
+            <td>${r.resource}</td>
+            <td>${r.method}</td>
+            <td>
+              <a href="@{admin.Resources.edit(r.id)}">编辑</a>
+              <a onclick="return confirm('确定要删除么？');" href="@{admin.Resources.delete(r.id)}">删除</a>
+            </td>
+          </tr>
+          #{/list}
+        </tbody>
+      </table>

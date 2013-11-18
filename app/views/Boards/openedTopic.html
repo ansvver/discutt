@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><b>{{openedTopic.title}}</b></div>
+  <div class="panel-body">
+    <div class="topic-title">
+      {{openedTopic.user.nickName}}
+      <span class="topic-date">2013-10-10 22:30</span>
+    </div>
+    <div id="topic-body" class="topic-body">{{openedTopic.content}}</div>
+    
+    <div id="reply-list" class="reply-list">
+     <div class="reply-item" ng-repeat="r in openedTopic.replies">
+      <div class="reply-title">
+        {{r.user.nickName}}
+        <span class="reply-date">2013-10-10 22:30</span>
+      </div>
+      <div class="reply-body">{{r.content}}</div>
+     </div>
+     
+     <div>
+      <div id="wmd-preview-reply" class="wmd-panel wmd-preview"></div>
+      <div class="wmd-panel">
+       <div id="wmd-button-bar-reply"></div>
+       <textarea ng-model="reply.content" class="wmd-input" id="wmd-input-reply"></textarea>
+      </div>
+      <div><button ng-click="replyTopic(openedTopic.id)" 
+                   type="button" class="btn btn-default">回复</button></div>
+     </div>
+     
+    </div>
+  </div>
+</div>

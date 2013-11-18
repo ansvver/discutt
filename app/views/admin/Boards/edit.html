@@ -1,0 +1,40 @@
+#{extends 'Admin/Boards/base.html' /}
+#{set title:'编辑板块' /}
+
+#{set 'moreScripts'}
+  #{script 'wmd/Markdown.Converter.js'/}
+  #{script 'wmd/Markdown.Sanitizer.js'/}
+  #{script 'wmd/Markdown.Editor.js'/}
+  #{script 'wmd/init.js'/}
+#{/set}
+
+#{set 'moreStyles'}
+  #{stylesheet 'wmd.css'/}
+#{/set}
+
+<form action="@{admin.Boards.save()}">
+  <input type="hidden" name="board.id" value="${board?.id}"/>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>板块名称</label>
+      <input type="text" class="form-control" name="board.name" value="${board?.name}"/>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-3">
+      <label>板块排序(降序)</label>
+      <input type="text" class="form-control" name="board.orderNo" value="${board?.orderNo}"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>板块介绍</label>
+    <div>
+     <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+     <div class="wmd-panel">
+      <div id="wmd-button-bar"></div>
+      <textarea name="board.detail" class="wmd-input" id="wmd-input">${board?.detail}</textarea>
+     </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-default">提交</button>
+</form>

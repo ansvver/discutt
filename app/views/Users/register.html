@@ -1,0 +1,61 @@
+#{extends 'main.html' /}
+#{set title:'用户注册' /}
+#{set 'moreScripts'}
+  #{script 'utils.js'/} 
+  #{script 'app/views/users/register.js'/}
+#{/set}
+<div class="container-1100">
+  <div class="container-box">
+  
+  <form class="form-horizontal" id="user-register-form" action="@{Users.save()}" method="post">
+    <div class="control-group">
+		  <label>个人邮箱</label>
+		  <div class="row">
+		    <div class="col-md-3">
+		      <input class="form-control" type="text" id="user.email" name="user.email" onblur="CheckEmail()"/>
+		    </div>
+		    <span class="help-block">
+		      <span class="muted"  id="email-text">用来登陆或找回密码</span>
+		    </span>
+		  </div>
+		</div>
+		<div class="control-group">
+      <label>昵 称</label>
+      <div class="row">
+        <div class="col-md-3">
+          <input class="form-control" type="text" id="user.nickName" name="user.nickName" onblur="CheckNickName()"/>
+        </div>
+        <span class="help-block">
+          <span class="muted" id="nickName-text">显示用的名字,不能少于4个字符</span>
+        </span>
+      </div>
+    </div>
+		<div class="control-group">
+		  <label>密 码</label>
+		  <div class="row">
+		    <div class="col-md-3">
+		      <input class="form-control" type="password" id="user.password" name="user.password" onblur="CheckPassword()"/>
+		    </div>
+		    <span class="help-block">
+		      <span class="muted" id="password-text">密码至少需要8个字符</span>
+		    </span>
+		  </div>
+		</div>
+		<div class="control-group">
+		  <label>确认密码</label>
+		  <div class="row">
+		    <div class="col-md-3">
+		      <input class="form-control" type="password" id="user.passwordConfirm" name="user.passwordConfirm" onblur="ConfirmPassword()"/>
+		    </div>
+		    <span class="help-block" id="passwordConfirm-text"></span>
+		  </div>
+		</div>
+		<div class="control-group">
+	    <div>
+	      <button type="button" id="user-create-btn" class="btn btn-success">注册用户</button>
+	    </div>
+	  </div>
+  </form>
+    
+  </div>
+</div>

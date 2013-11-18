@@ -1,0 +1,27 @@
+#{extends 'Admin/Boards/base.html' /}
+#{set title:'Home' /}
+
+<div><a class="btn btn-success" href="@{admin.Boards.edit()}">添加</a></div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>板块名称</th>
+      <th>板块排序(降序)</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+	   #{list boards, as:'board'}
+	   <tr>
+	     <td>${board.id}</td>
+	     <td>${board.name}</td>
+	     <td>${board.orderNo}</td>
+	     <td>
+	       <a href="@{admin.Boards.edit(board.id)}">编辑</a>
+	       <a onclick="return confirm('确定要删除么？');" href="@{admin.Boards.delete(board.id)}">删除</a>
+	     </td>
+	   </tr>
+	   #{/list}
+  </tbody>
+</table>

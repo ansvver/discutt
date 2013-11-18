@@ -1,0 +1,38 @@
+body {
+	background-color: #E8E9ED;
+	font-family: "Microsoft YaHei","微软雅黑",tahoma,arial,simsun,"宋体";
+}
+
+body a {
+	text-decoration: none;
+}
+
+body a:hover {
+	text-decoration: none;
+}
+
+button, input {
+  outline: none!important;	
+}
+
+.container-box {
+  padding: 10px;
+}
+
+.minheight-600 {
+	min-height: 600px;
+}
+
+.container-1100 {
+  width: 1100px;
+  margin: 0 auto;
+  border: 1px solid #D4D4D5;
+  background: white;
+}
+
+.tips {
+  text-align: center;
+  display: none;
+  margin-top: 50px;
+  font-size: 15px;
+}

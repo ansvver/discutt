@@ -1,0 +1,47 @@
+.panel-body {
+  padding: 0;
+}
+
+#user-register-form {
+	padding: 100px;
+}
+
+#user-login-form {
+  padding: 10px 100px;
+}
+
+.reply-item {
+	margin: 10px 0;
+	border-bottom: 1px #CCC solid;
+	border-top: 1px #CCC solid;
+}
+
+.reply-title, .topic-title {
+	padding: 4px 10px;
+	background-color: #EEE;
+	margin-bottom: 0;
+	border-bottom: 1px solid lightgray;
+}
+
+.topic-body {
+	padding: 20px;
+}
+
+.reply-body {
+	padding: 10px;
+}
+
+.reply-date, .topic-date {
+	padding-left: 20px;
+	font-size: 12px;
+	color: gray;
+}
+
+.topic-list {
+	overflow: scroll;
+	width: 350px;
+}
+
+.topic-links {
+	cursor: pointer;
+}

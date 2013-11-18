@@ -1,0 +1,40 @@
+#{extends 'Admin/Resources/base.html' /}
+#{set title:'Home' /}
+<form class="form-horizontal" action="@{admin.Resources.save()}" method="post">
+  <input type="hidden" name="resource.id" value="${resource?.id}"/>
+  <fieldset>
+    <legend>${resource?.name}</legend>
+    <div class="control-group">
+      <label class="control-label" for="name">资源名称:</label>
+      <div class="controls">
+        <input type="text" name="resource.name" placeholder="分组名称" value="${resource?.name}"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="detail">资源地址:</label>
+      <div class="controls">
+        <input type="text" name="resource.resource" placeholder="分组描述" value="${resource?.resource}"/>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="detail">访问类型:</label>
+      <div class="controls">
+        <select name="resource.method">
+          #{list methods, as:'m'}
+          <option #{if m.name()==resource?.method}selected="selected"#{/if} value="${m.name()}">${m.name()}</option>
+          #{/list}
+        </select>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        #{if resource}
+        <button type="submit" class="btn">保存更新</button>
+        #{/if}
+        #{else}
+        <button type="submit" class="btn">添加</button>
+        #{/else}
+      </div>
+    </div>
+  </fieldset>
+</form>

@@ -1,0 +1,29 @@
+#{extends 'Admin/Users/base.html' /}
+#{set title:'Home' /}
+
+<div><a href="@{admin.Users.edit()}" class="btn btn-success">添加</a></div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>昵称</th>
+      <th>登陆邮箱</th>
+      <th>所属分组</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    #{list users, as:'user'}
+    <tr>
+      <td>${user.id}</td>
+      <td>${user.nickName}</td>
+      <td>${user.email}</td>
+      <td>${user.userGroup.name}</td>
+      <td>
+        <a href="@{admin.Users.edit(user.id)}">编辑</a>
+        <a onclick="return confirm('确认删除么')" href="@{admin.Users.deleteUser(user.id)}">删除</a>
+      </td>
+    </tr>
+    #{/list}
+  </tbody>
+</table>

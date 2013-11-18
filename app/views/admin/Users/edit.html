@@ -1,0 +1,50 @@
+#{extends 'Admin/Users/base.html' /}
+#{set title:'User Edit' /}
+#{set 'moreScripts'}
+  #{script 'app/views/admin/user/user_edit.js'/}
+#{/set}
+
+      <form id="user-edit-form" class="form-horizontal" action="@{admin.Users.saveUser()}" method="post">
+        <input type="hidden" name="user.id" value="${user?.id}"/>
+        <fieldset>
+          <legend>${user?.nickName}</legend>
+          <div class="control-group">
+            <label class="control-label">用户昵称:</label>
+            <div class="controls">
+              <input type="text" id="user.nickName" name="user.nickName"value="${user?.nickName}"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">用户邮箱:</label>
+            <div class="controls">
+              <input type="text" id="user.email" name="user.email" value="${user?.email}"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">密码:</label>
+            <div class="controls">
+              <input type="text" id="user.password" name="user.password" value="${user?.password}"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">用户分组:</label>
+            <div class="controls">
+              <select id="user.userGroup" name="user.userGroup.id">
+                #{list groups, as:'g'}
+                <option value="${g.id}">${g.name}</option>
+                #{/list}
+              </select>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              #{if user}
+              <button type="submit" class="btn">保存更新</button>
+              #{/if}
+              #{else}
+              <button type="submit" class="btn">添加</button>
+              #{/else}
+            </div>
+          </div>
+        </fieldset>
+      </form>

@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+GET     /admin                                  admin.Admin.index
+
+# Assets
+GET     /favicon.ico                            404
+GET     /public/                                staticDir:public
+GET     /data/                                  staticDir:data
+
+
+# User Manage
+GET     /admin/resources/edit/{<[0-9]+>id}            admin.Resources.edit
+
+
+# Catch all admins
+*       /admin/{controller}/{action}                  admin.{controller}.{action}
+
+# Catch all others
+*       /{controller}/{action}                  {controller}.{action}
