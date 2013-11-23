@@ -2,11 +2,12 @@
 #{set title:'Home' /}
 
 #{set 'moreScripts'}
+ #{script 'angular-sanitize.min.js'/}
   #{script 'wmd/Markdown.Converter.js'/}
   #{script 'wmd/Markdown.Sanitizer.js'/}
   #{script 'wmd/Markdown.Editor.js'/}
-  #{script 'wmd/init.js'/}
   #{script 'app/views/boards/index.js'/}
+  #{script 'wmd/init.js'/}
 #{/set}
 
 #{set 'moreStyles'}
@@ -14,7 +15,7 @@
 #{/set}
 
 <div class="container-1100" ng-app="boardApp" 
-                            ng-controller="BoardIndexCtrl" ng-init="init()">
+                            ng-controller="BoardIndexCtrl" ng-init="init(${board.id})">
 
   <div class="container-box row">
     <div class="col-md-4">
@@ -28,18 +29,33 @@
 			  <div class="panel-body topic-list">
 		       <table class="table table-hover table-condensed">
 		         <tr ng-repeat="t in topics" 
-		             ng-click="openTopic(t.id)"
+		             ng-click="openTopic(t)"
 		             ng-class="{'active' : t.selected}" class="topic-links">
 		           <td><a>{{t.title}}</a></td>
-		           <td><span>+14</span></td>
+		           <td><span>+ {{t.replyCount}}</span></td>
 		         </tr>
 		       </table>
+		       <div class="page-nav">
+		        <ul class="pagination pagination-sm">
+						  <li ng-click="listTopics(${board.id}, 1)"><a href="javascript:void(0);">首页</a></li>
+
+						  <li ng-repeat="page in topicPages"
+						      ng-click="listTopics(${board.id}, page)"
+						      ng-class="{'active' : topicPage == page}">
+						    <a href="javascript:void(0);">{{page}}</a>
+						  </li>
+
+						  <li ng-click="listTopics(${board.id}, -1)"><a href="javascript:void(0);">尾页</a></li>
+						</ul>
+					</div>
 			  </div>
 			</div>
     </div>
     
     <div class="col-md-8 minheight-600">
-	    <div ng-hide="hideBoardDetail">${board?.detail}</div>
+	    <div ng-hide="hideBoardDetail">
+	     <div class="wmd-preview">${board?.detail}</div>
+	    </div>
 	    <div ng-hide="hideOpenedTopic">#{include 'Boards/openedTopic.html'/}</div>
     </div><!-- col-md-8 -->
   </div><!-- container-1100 -->

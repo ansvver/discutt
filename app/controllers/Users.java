@@ -32,7 +32,7 @@ public class Users extends Application {
             if (loginUser != null) {
                 loginSession(loginUser.id, loginUser.nickName);
                 // 进入用户的个人首页
-                Users.home(loginUser.id);
+                Application.index();
             }
         }
         render("Users/login.html", error, user);

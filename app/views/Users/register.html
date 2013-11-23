@@ -4,9 +4,11 @@
   #{script 'utils.js'/} 
   #{script 'app/views/users/register.js'/}
 #{/set}
+
 <div class="container-1100">
   <div class="container-box">
-  
+  <div class="alert alert-success">Discutt是一个倡导简介、快速交流的社区，请避免长篇大论!</div>
+
   <form class="form-horizontal" id="user-register-form" action="@{Users.save()}" method="post">
     <div class="control-group">
 		  <label>个人邮箱</label>

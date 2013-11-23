@@ -3,11 +3,15 @@
 }
 
 #user-register-form {
-	padding: 100px;
+	padding: 25px 120px
 }
 
 #user-login-form {
   padding: 10px 100px;
+}
+
+#home-page {
+	margin: 80px 50px;
 }
 
 .reply-item {
@@ -44,4 +48,35 @@
 
 .topic-links {
 	cursor: pointer;
+}
+
+#wmd-preview-reply {
+	border: 1px solid #EEE;
+	clear: both;
+}
+
+.page-nav {
+	text-align: center;
+}
+
+.page-nav ul {
+	margin: -10px 0 0 0;
+}
+
+.reply-page-bottom-nav {
+	text-align: right;
+}
+
+.reply-page-top-nav {
+	text-align: right;
+	margin-top: 5px;
+}
+
+.reply-page-bottom-nav ul,.reply-page-top-nav ul {
+	margin: 0;
+}
+
+.reply-btn{
+	float: left;
+  margin: 3px 0 0px 5px;
 }

@@ -1,30 +1,82 @@
 <div class="panel panel-default">
-  <div class="panel-heading"><b>{{openedTopic.title}}</b></div>
+  <div class="panel-heading">
+    <b>主题：{{openedTopic.title}}</b>
+    #{hasPermission resource:'/Topics/delete'}
+    <button ng-click="deleteTopic(${board?.id},openedTopic.id)" class="btn btn-xs btn-danger">删除</button>
+    #{/hasPermission}
+    <span ng-click="closeTopic()" class="close pull-right">X</span>
+  </div>
   <div class="panel-body">
+  
     <div class="topic-title">
-      {{openedTopic.user.nickName}}
-      <span class="topic-date">2013-10-10 22:30</span>
+      <b>{{openedTopic.user.nickName}}</b>
+      <span class="topic-date">{{openedTopic.date}}</span>
+      <span class="label label-default pull-right">楼主</span>
     </div>
-    <div id="topic-body" class="topic-body">{{openedTopic.content}}</div>
-    
-    <div id="reply-list" class="reply-list">
-     <div class="reply-item" ng-repeat="r in openedTopic.replies">
-      <div class="reply-title">
-        {{r.user.nickName}}
-        <span class="reply-date">2013-10-10 22:30</span>
-      </div>
-      <div class="reply-body">{{r.content}}</div>
-     </div>
-     
+    <div id="topic-body" class="topic-body" ng-bind-html="openedTopic.content"></div>
+
+    <!-- editor box -->
      <div>
-      <div id="wmd-preview-reply" class="wmd-panel wmd-preview"></div>
       <div class="wmd-panel">
        <div id="wmd-button-bar-reply"></div>
-       <textarea ng-model="reply.content" class="wmd-input" id="wmd-input-reply"></textarea>
+       <textarea ng-model="reply.content"
+                 ng-change="reply.contentChanged()" class="wmd-input" id="wmd-input-reply"></textarea>
       </div>
-      <div><button ng-click="replyTopic(openedTopic.id)" 
-                   type="button" class="btn btn-default">回复</button></div>
-     </div>
+      <div class="alert alert-danger" ng-hide="!replyError" ng-bind-html="replyError"></div>
+      <div class="reply-btn">
+        #{if session['USER_ID'] != null}
+        <button ng-click="replyTopic(openedTopic.id)" 
+                 type="button" class="btn btn-default">回复</button>
+        <span>还能继续输入{{reply.contentLength}}个字符</span>
+        #{/if}
+        #{else}
+        <h3 class="label label-danger">登陆后才能回复</h3>
+        #{/else}
+      </div>
+
+      <!-- page nav -->
+	    <div class="reply-page-top-nav">
+	      <ul class="pagination pagination-sm" ng-if="replyPages">
+	        <li ng-click="listReplies(openedTopic.id, 1)"><a href="javascript:void(0);">最新</a></li>
+	        <li ng-repeat="page in replyPages"
+	            ng-click="listReplies(openedTopic.id, page)"
+	            ng-class="{'active' : replyPage == page}">
+	          <a href="javascript:void(0);">{{page}}</a>
+	        </li>
+	        <li ng-click="listReplies(openedTopic.id, -1)"><a href="javascript:void(0);">最老</a></li>
+	      </ul>
+	    </div><!-- page nav -->
+	    <div id="wmd-preview-reply" class="wmd-panel wmd-preview"></div>
+     </div><!-- editor box -->
+
+    <div id="reply-list" class="reply-list clearfix">
+     <!--  Reply List -->
+     <div class="reply-item" ng-repeat="r in replies">
+      <div class="reply-title">
+        <b>{{r.user.nickName}}</b>
+        <span class="reply-date">{{r.date}}</span>
+        #{hasPermission resource:'/Replies/delete'}
+		    <button ng-click="deleteReply(r.id)" class="btn btn-xs btn-danger">删除</button>
+		    #{/hasPermission}
+        <span class="label label-default pull-right">{{r.id}}</span>
+      </div>
+      <div class="reply-body" ng-bind-html="r.content"></div>
+     </div><!--  Reply List -->
+     
+     <!-- page nav -->
+     <div class="reply-page-bottom-nav">
+	     <ul class="pagination pagination-sm" ng-if="replyPages">
+	       <li ng-click="listReplies(openedTopic.id, 1)"><a href="javascript:void(0);">最新</a></li>
+	
+	       <li ng-repeat="page in replyPages"
+	           ng-click="listReplies(openedTopic.id, page)"
+	           ng-class="{'active' : replyPage == page}">
+	         <a href="javascript:void(0);">{{page}}</a>
+	       </li>
+	
+	       <li ng-click="listReplies(openedTopic.id, -1)"><a href="javascript:void(0);">最老</a></li>
+	     </ul>
+     </div><!-- page nav -->
      
     </div>
   </div>

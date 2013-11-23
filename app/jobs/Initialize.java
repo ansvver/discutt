@@ -74,6 +74,10 @@ public class Initialize extends Job<String> {
 
         anonymous.resources.add(Resource.createOrFetch("Topics.getJSON"));
         anonymous.resources.add(Resource.createOrFetch("Topics.loadJSON"));
+        anonymous.resources.add(Resource.createOrFetch("Topics.countAll"));
+
+        anonymous.resources.add(Resource.createOrFetch("Replies.loadJSON"));
+        anonymous.resources.add(Resource.createOrFetch("Replies.countAll"));
 
         anonymous.save();
     }
@@ -125,10 +129,13 @@ public class Initialize extends Job<String> {
         t1.board = board;
         t1.save();
 
-        Reply r1 = new Reply();
-        r1.content = "reply 1";
-        r1.topic = t1;
-        r1.save();
+        for (int i = 0; i < 20; i++) {
+            Reply r = new Reply();
+            r.topic = t1;
+            r.content = "content " + i;
+            r.date = "12313";
+            r.save();
+        }
 
         Topic t2 = new Topic();
         t2.user = (User) User.findAll().get(0);
@@ -136,5 +143,14 @@ public class Initialize extends Job<String> {
         t2.content = "333的哈师大爱仕达啊实打实打算打扫的爱上打扫的奥斯丁";
         t2.board = board;
         t2.save();
+
+        for (int i = 0; i < 20; i++) {
+            Topic t = new Topic();
+            t.user = (User) User.findAll().get(0);
+            t.title = i + " " + i + " asdasdasd";
+            t.content = " content " + i;
+            t.board = board;
+            t.save();
+        }
     }
 }

@@ -7,9 +7,12 @@
           <h4>发表新主题</h4>
         </div>
         <div class="modal-body">
+            <div class="alert alert-danger" 
+                    ng-bind-html="createTopicError"
+                    ng-hide="!createTopicError"></div>
             <div class="form-group">
               <label>标题</label>
-              <input ng-model="topic.title" type="text" class="form-control"/>
+              <input ng-model="topic.title" type="text" class="form-control" placeholder="标题长度需要5到25个字符之间"/>
             </div>
             <div class="form-group">
               <label>内容</label>
@@ -17,16 +20,14 @@
               <div class="wmd-panel">
                <div id="wmd-button-bar-topic"></div>
                <textarea ng-model="topic.content" ng-change="topic.contentChanged()" 
-                         class="wmd-input" id="wmd-input-topic"></textarea>
+                         class="wmd-input" id="wmd-input-topic" placeholder="内容长度需要在5到240个字符之间"></textarea>
               </div>
             </div>
-            <div>
-            Write Less, Talk More ! 还能写：{{topic.contentLength}}个字.
-            </div>
+            <div>Write Less, Talk More ! 还能写：{{topic.contentLength}}个字.</div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" ng-click="saveTopic()" class="btn btn-primary">发布</button>
+          <button type="button" ng-click="saveTopic(${board.id})" class="btn btn-primary">发布</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

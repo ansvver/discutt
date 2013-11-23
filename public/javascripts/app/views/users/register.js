@@ -1,6 +1,6 @@
 /**
- * @fileoverview For Users/register.html
- * @author Roy Guo
+ * @fileoverview 用户注册, 真正提交Form是在CheckEmail()函数中，因为需要异步先检测邮箱可用.
+ * @author royguo1988@gmail.com(Roy Guo)
  */
 
 var validator = new play.utils.FormatValidator();

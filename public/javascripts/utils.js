@@ -27,7 +27,7 @@ play.utils.FormatValidator.prototype.fitLength = function(text, min, max) {
 
 
 /**
- * Global tips.
+ * 浮动提示框工具.
  */
 play.utils.Tips = function(){
 	this.e = null;

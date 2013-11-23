@@ -1,41 +1,74 @@
 package controllers;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import models.Reply;
+import models.Board;
 import models.Topic;
-import utils.JSONUtils;
+import play.Logger;
+import utils.DateUtil;
+import utils.json.JSONObject;
+import utils.json.JSONUtil;
 
 public class Topics extends Application {
 
-    public static void save(Topic topic) {
-        topic.save();
+    public static void save(Topic topic, long boardID) {
         topic.user = currentUser();
-        renderJSON(JSONUtils.toJSON(topic, "id", "title"));
+        topic.lastUpdate = topic.date = DateUtil.format(new Date());
+        topic.board = Board.findById(boardID);
+        topic.save();
+        renderJSON(JSONUtil.toJSONForObject(topic, "id", "title", "date", "replyCount").toString());
     }
 
+    /**
+     * 获得指定的Topic
+     * @param id
+     */
     public static void getJSON(long id) {
         Topic topic = Topic.findById(id);
-
-        Map<String, Object> topicMap = JSONUtils.toMap(topic, "id", "title", "content");
-        // 将当前主题下的回复仿佛JSON对象, 同时为每一个Reply添加User的JSON对象
-        List<Object> replies = new ArrayList<Object>();
-        for (Reply reply : topic.replies) {
-            Map<String, Object> replyMap = JSONUtils.toMap(reply, "content");
-            Map<String, Object> userMap = JSONUtils.toMap(reply.user, "nickName");
-            replyMap.put("user", userMap);
-            replies.add(replyMap);
-        }
-        topicMap.put("replies", replies);
-        // 将当前主题的User对象放进去
-        topicMap.put("user", JSONUtils.toMap(topic.user, "nickName"));
-        renderJSON(JSONUtils.gson.toJson(topicMap));
+        Logger.info(topic.date);
+        JSONObject json =
+                JSONUtil.toJSONForObject(topic, "id", "title", "content", "date", "replyCount");
+        json.addSubObject("user", "nickName");
+        renderJSON(json.toString());
     }
 
-    public static void loadJSON(int page, int pageSize) {
-        List<Topic> topics = Topic.findAll();
-        renderJSON(JSONUtils.toJSONForList(topics, "id", "title"));
+    /**
+     * 获得指定分页的一组Topic
+     * @param boardID
+     * @param page
+     * @param pageSize
+     */
+    public static void loadJSON(long boardID, int page, int pageSize) {
+        List<Topic> topics = null;
+        if (page == -1) {
+            int lastPage = (int) Topic.count() / pageSize;
+            if (Topic.count() % pageSize > 0) lastPage++;
+            topics =
+                    Topic.find("board.id = ? order by lastUpdate desc", boardID).fetch(lastPage,
+                            pageSize);
+        } else {
+            topics =
+                    Topic.find("board.id = ? order by lastUpdate desc", boardID).fetch(page,
+                            pageSize);
+        }
+        for (Topic topic : topics) {
+            topic.replyCount = topic.replies.size();
+        }
+        renderJSON(JSONUtil.toJSONForList(topics, "id", "title", "replyCount"));
+    }
+
+    /**
+     * 获得主题总数
+     * @param boardID
+     */
+    public static void countAll(long boardID) {
+        long count = Topic.count("board.id = ?", boardID);
+        renderJSON(count);
+    }
+
+    public static void delete(long id) {
+        Topic topic = Topic.findById(id);
+        topic.delete();
     }
 }

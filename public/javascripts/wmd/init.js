@@ -17,10 +17,16 @@ function initWMDEditors() {
             return "<blockquote>" + rbg(inner) + "</blockquote>\n";
         });
     });
+
     $("textarea[id^='wmd-input-']").each(function(i, e){
       var postfix = $(e).attr("id").replace("wmd-input","");
       var editor = new Markdown.Editor(converter, postfix);
       editor.run();
     });
 
+    // 将页面中的preview中的markdown内容转换成html
+    $.each($(".wmd-preview"), function(index, t) {
+      var text = converter.makeHtml($(t).text());
+      $(t).html(text);
+    }); 
 }
