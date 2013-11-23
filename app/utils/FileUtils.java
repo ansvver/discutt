@@ -5,6 +5,10 @@ import java.io.File;
 import play.Play;
 import play.libs.Files;
 
+/**
+ * 与文件系统交互的核心工具.
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class FileUtils {
 
     /**

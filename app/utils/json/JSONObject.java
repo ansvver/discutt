@@ -8,6 +8,10 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+/**
+ * 主要通过JSONUtil来使用JSONObject
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class JSONObject {
     public static final Gson gson = new Gson();
 

@@ -5,6 +5,9 @@ import java.util.List;
 import models.Board;
 import controllers.Application;
 
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Boards extends Application {
 
     public static void list() {

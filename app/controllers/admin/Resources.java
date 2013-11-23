@@ -9,7 +9,9 @@ import utils.Globals;
 import utils.Globals.REQUEST_METHOD;
 import controllers.Application;
 
-
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Resources extends Application {
 
     public static void list() {

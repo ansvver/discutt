@@ -10,6 +10,9 @@ import play.mvc.Controller;
 import utils.Globals;
 import utils.SecurityUtils;
 
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Application extends Controller {
     /**
      * 从session中获得当前用户.

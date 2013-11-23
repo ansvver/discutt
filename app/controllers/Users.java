@@ -7,7 +7,9 @@ import play.data.validation.Valid;
 import play.libs.Codec;
 import utils.Globals;
 
-
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Users extends Application {
 
     public static void register() {

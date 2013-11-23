@@ -1,7 +1,7 @@
 #{extends 'Admin/Users/base.html' /}
 #{set title:'User Edit' /}
 #{set 'moreScripts'}
-  #{script 'app/views/admin/user/user_edit.js'/}
+  #{script 'app/admin/user/user_edit.js'/}
 #{/set}
 
       <form id="user-edit-form" class="form-horizontal" action="@{admin.Users.saveUser()}" method="post">

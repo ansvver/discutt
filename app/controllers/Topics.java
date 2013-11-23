@@ -10,6 +10,10 @@ import utils.DateUtil;
 import utils.json.JSONObject;
 import utils.json.JSONUtil;
 
+
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Topics extends Application {
 
     public static void save(Topic topic, long boardID) {

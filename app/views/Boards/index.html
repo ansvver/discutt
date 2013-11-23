@@ -6,7 +6,7 @@
   #{script 'wmd/Markdown.Converter.js'/}
   #{script 'wmd/Markdown.Sanitizer.js'/}
   #{script 'wmd/Markdown.Editor.js'/}
-  #{script 'app/views/boards/index.js'/}
+  #{script 'app/boards/index.js'/}
   #{script 'wmd/init.js'/}
 #{/set}
 
@@ -23,8 +23,13 @@
 			  <div class="panel-heading">
 			  ${board.name}
 			  <!-- Button trigger modal -->
+			  #{if session['USER_ID'] != null}
 				<button class="pull-right btn btn-xs btn-success" 
 				        data-toggle="modal" data-target="#editModal">发布</button>
+        #{/if}
+        #{else}
+        <a href="@{Users.login()}" class="pull-right btn btn-xs btn-success">登陆后可发布</a>
+        #{/else}
 			  </div>
 			  <div class="panel-body topic-list">
 		       <table class="table table-hover table-condensed">

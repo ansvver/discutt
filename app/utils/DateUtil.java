@@ -3,6 +3,9 @@ package utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class DateUtil {
 
     public static String format(Date date) {

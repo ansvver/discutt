@@ -8,6 +8,9 @@ import models.security.UserGroup;
 import play.data.validation.Valid;
 import controllers.Application;
 
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Users extends Application {
 
     public static void list() {

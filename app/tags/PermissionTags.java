@@ -14,6 +14,10 @@ import play.templates.JavaExtensions;
 import utils.Globals;
 import utils.SecurityUtils;
 
+/**
+ * 与权限控制相关的模版Tags.
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class PermissionTags extends FastTags {
 
     public static User currentUser() {

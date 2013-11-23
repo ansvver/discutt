@@ -3,6 +3,9 @@ package controllers;
 import models.Board;
 import models.Topic;
 
+/**
+ * @author royguo1988@gmail.com(Roy Guo)
+ */
 public class Boards extends Application {
 
     public static void index(long id) {
