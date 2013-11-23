@@ -20,4 +20,5 @@ GET     /admin/resources/edit/{<[0-9]+>id}            admin.Resources.edit
 *       /admin/{controller}/{action}                  admin.{controller}.{action}
 
 # Catch all others
+*       /boards/{id}                            Boards.index
 *       /{controller}/{action}                  {controller}.{action}

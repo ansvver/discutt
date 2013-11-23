@@ -4,8 +4,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import models.Board;
-import models.Reply;
-import models.Topic;
 import models.security.Resource;
 import models.security.User;
 import models.security.UserGroup;
@@ -117,40 +115,24 @@ public class Initialize extends Job<String> {
     }
 
     private void initTempData() {
-        Board board = new Board();
-        board.name = "创业论坛";
-        board.detail = "创业论坛创业论坛创业论坛创业论坛创业论坛";
-        board.save();
+        Board b1 = new Board();
+        b1.name = "畅所欲言";
+        b1.orderNo = 0;
+        b1.save();
 
-        Topic t1 = new Topic();
-        t1.user = (User) User.findAll().get(0);
-        t1.title = "asdasdasdasdasd";
-        t1.content = "的哈师大爱仕达啊实打实打算打扫的爱上打扫的奥斯丁";
-        t1.board = board;
-        t1.save();
+        Board b2 = new Board();
+        b2.name = "BUG讨论";
+        b2.orderNo = 1;
+        b2.save();
 
-        for (int i = 0; i < 20; i++) {
-            Reply r = new Reply();
-            r.topic = t1;
-            r.content = "content " + i;
-            r.date = "12313";
-            r.save();
-        }
+        Board b3 = new Board();
+        b3.name = "功能建议";
+        b3.orderNo = 2;
+        b3.save();
 
-        Topic t2 = new Topic();
-        t2.user = (User) User.findAll().get(0);
-        t2.title = "123asdasdasdasdasd";
-        t2.content = "333的哈师大爱仕达啊实打实打算打扫的爱上打扫的奥斯丁";
-        t2.board = board;
-        t2.save();
-
-        for (int i = 0; i < 20; i++) {
-            Topic t = new Topic();
-            t.user = (User) User.findAll().get(0);
-            t.title = i + " " + i + " asdasdasd";
-            t.content = " content " + i;
-            t.board = board;
-            t.save();
-        }
+        Board b4 = new Board();
+        b4.name = "代码吐槽";
+        b4.orderNo = 3;
+        b4.save();
     }
 }
