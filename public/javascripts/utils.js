@@ -1,14 +1,21 @@
-// 格式化工具类
-var FormatValidtor = new Function();
-FormatValidtor.isEmailAddress = function(address){
+/**
+ * 格式化工具类.
+ */
+
+play.utils.FormatValidator = function(){
+  console.log("Hello");
+};
+
+/**
+ * 检测是否是Email地址.
+ */
+play.utils.FormatValidator.prototype.isEmailAddress = function(address){
 	var arr = address.match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/);
 	if(arr!=null){
 		return true;
 	}
 	return false;
 }
-
-play.utils.FormatValidator = function(){}
 
 play.utils.FormatValidator.prototype.isEmailAddress = function(address) {
 	var arr = address.match(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/);
@@ -32,13 +39,13 @@ play.utils.FormatValidator.prototype.fitLength = function(text, min, max) {
 play.utils.Tips = function(){
 	this.e = null;
 	this.initialize_();
-}
+};
 
 play.utils.Tips.prototype.initialize_ = function(){
 	var e = $("<div class='alert navbar-fixed-top tips'>Tips Box</div>");
 	$("body").append(e);
 	this.e = e;
-}
+};
 
 play.utils.Tips.prototype.popup_ = function(msg, clazz, duration) {
 	if(!msg) return;
@@ -47,12 +54,12 @@ play.utils.Tips.prototype.popup_ = function(msg, clazz, duration) {
 	this.e.addClass(clazz);
 	this.e.html(msg);
 	this.e.fadeOut(duration);
-}
+};
 
 play.utils.Tips.prototype.success = function(msg, duration) {
 	this.popup_(msg, "alert-success", duration);
-}
+};
 
 play.utils.Tips.prototype.fail = function(msg, duration) {
 	this.popup_(msg, "alert-error", duration);
-}
+};
