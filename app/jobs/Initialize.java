@@ -115,6 +115,7 @@ public class Initialize extends Job<String> {
     }
 
     private void initTempData() {
+        if (Board.count() > 0) return;
         Board b1 = new Board();
         b1.name = "畅所欲言";
         b1.orderNo = 0;
