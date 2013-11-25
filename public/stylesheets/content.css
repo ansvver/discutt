@@ -42,7 +42,7 @@
 }
 
 .topic-list {
-	overflow: scroll;
+	overflow: hidden;
 	width: 350px;
 }
 
