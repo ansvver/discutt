@@ -16,7 +16,7 @@ import play.libs.Codec;
 @Entity(name = "T_USER")
 public class User extends Model {
     @Required
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @MinSize(value = 2)
     @MaxSize(value = 8)
     public String nickName;

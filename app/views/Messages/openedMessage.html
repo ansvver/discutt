@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <b>发件人：${msg.fromUser.nickName} 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    收件人：${msg.toUser.nickName} 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    时间: ${msg.createTime}</b>
+  </div>
+  <div class="panel-body">
+    <!-- editor box -->
+     <div>
+      <div class="wmd-panel">
+       <div style="margin: 10px;">${msg.content}</div>
+      </div>
+      <div class="reply-btn">
+        #{if session['USER_ID'].equals(msg.fromUser.id+'')}
+        <a href="@{Messages.reply(msg.id)}" class="btn btn-success" class="btn btn-default">继续发信给${msg.toUser.nickName}</a>
+        #{/if}
+        #{else}
+        <a href="@{Messages.reply(msg.id)}" class="btn btn-success" class="btn btn-default">回复</a>
+        #{/else}
+      </div>
+     </div><!-- editor box -->
+
+    <div id="reply-list" class="reply-list clearfix">
+     
+    </div>
+  </div>
+</div>

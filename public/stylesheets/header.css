@@ -1,3 +1,9 @@
 .header {
 	margin-bottom: 5px;
 }
+
+.new-message-tip {
+	position: absolute;
+	top: 0;
+	left: 32px;
+}

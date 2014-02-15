@@ -41,7 +41,7 @@ public class Replies extends Application {
         }
         String json =
                 JSONUtil.toJSONForListWithSubObject(replies,
-                        new String[] {"id", "content", "date"}, "user", new String[] {"nickName"});
+                        new String[] {"id", "content", "date"}, "user", new String[] {"nickName","id"});
         renderJSON(json);
     }
 

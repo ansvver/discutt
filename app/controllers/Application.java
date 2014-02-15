@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import models.Board;
+import models.Message;
 import models.security.User;
 import play.Logger;
 import play.mvc.Before;
@@ -44,10 +45,22 @@ public class Application extends Controller {
         forbidden("没有此权限");
     }
 
+    /**
+     * 预先取出所有的版块.
+     */
     @Before
     public static void findAllBoards() {
         List<Board> boards = Board.findAll();
         renderArgs.put("boards", boards);
+    }
+    
+    @Before
+    public static void hasUnOpenedMessage(){
+        if(currentUser() == null) {
+            return;
+        }
+        long count = Message.count("toUser.id = ? and opened = false", currentUser().id);
+        renderArgs.put(Globals.HAS_UNOPENED_MESSAGE, count > 0);
     }
 
     /**

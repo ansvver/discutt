@@ -13,6 +13,9 @@ function BoardIndexCtrl($scope, $http) {
   // 创建Topic时用的模型
   $scope.topic = new Topic();
   $scope.createTopicError;
+  
+  // 创建私信时使用的模型
+  $scope.message = new Message();
 
   // 创建回复时用的模型
   $scope.reply = new Reply();
@@ -229,6 +232,37 @@ function BoardIndexCtrl($scope, $http) {
       $scope.listTopics(boardID, $scope.topicPage);
     });
   };
+  
+  /**
+   * 创建私信
+   */
+  $scope.createMessage = function(userID, nickName){
+    $scope.message.toUserID = userID;
+    $scope.message.toUserNickName = nickName;
+  };
+  
+  /**
+   * 保存私信
+   */
+  $scope.saveMessage = function(fromUserID){
+    if($scope.message.content.length == 0) {
+      alert("私信内容不能为空");
+      return;
+    }
+    if(fromUserID == $scope.message.toUserID) {
+      alert("不能给自己发送私信!");
+      return;
+    }
+    $http({
+      method: 'POST',
+      url: ctx + 'messages/save',
+      data: $.param({"message.content":$scope.message.content, "message.toUser.id":$scope.message.toUserID, "message.fromUser.id": fromUserID}),
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function(){
+      $scope.message = new Message();
+      $("#messageModal").modal('hide');
+    });
+  };
 }
 
 //Utils
@@ -337,4 +371,14 @@ Reply.prototype.contentChanged = function() {
  */
 var User = function(nickName) {
   this.nickName = nickName;
+  this.id = null;
+};
+
+/**
+ * 私信.
+ */
+var Message = function(){
+  this.content = "";
+  this.toUserNickName = "";
+  this.toUserID = "";
 };

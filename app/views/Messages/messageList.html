@@ -1,0 +1,34 @@
+<div class="col-md-4">
+  <div class="panel panel-default" data-spy="affix">
+    <div class="panel-heading">
+    私信列表
+    <!-- Button trigger modal -->
+    </div>
+    <div class="panel-body topic-list">
+       <table class="table table-hover table-condensed">
+        #{list msgs,as:'m'}
+         <tr class="topic-links">
+           <td>
+            <a href="@{Messages.open(m.id)}" style="overflow:hidden;white-space: nowrap;display: block;width: 200px;">
+              #{if !m.opened}
+                #{if session['USER_ID'].equals(m.toUser.id+'')}
+                <b>${m.content}</b>
+                #{/if}
+                #{else}${m.content}#{/else}
+              #{/if}
+              #{else}${m.content}#{/else}
+            </a>
+           </td>
+           #{if session['USER_ID'].equals(m.toUser.id+'')}
+           <td>&lt-- ${m.fromUser.nickName}</td>
+           #{/if}
+           #{if session['USER_ID'].equals(m.fromUser.id+'')}
+           <td>--&gt ${m.toUser.nickName}</td>
+           #{/if}
+         </tr>
+         #{/list}
+       </table>
+    </div>
+  </div>
+</div>
+    

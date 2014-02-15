@@ -87,6 +87,12 @@ public class Initialize extends Job<String> {
         normalUser.resources.add(Resource.createOrFetch("Users.home"));
         normalUser.resources.add(Resource.createOrFetch("Topics.save"));
         normalUser.resources.add(Resource.createOrFetch("Replies.save"));
+        
+        normalUser.resources.add(Resource.createOrFetch("Messages.open"));
+        normalUser.resources.add(Resource.createOrFetch("Messages.save"));
+        normalUser.resources.add(Resource.createOrFetch("Messages.saveReply"));
+        normalUser.resources.add(Resource.createOrFetch("Messages.list"));
+        normalUser.resources.add(Resource.createOrFetch("Messages.reply"));
         normalUser.save();
     }
 

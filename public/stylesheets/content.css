@@ -35,7 +35,7 @@
 	padding: 10px;
 }
 
-.reply-date, .topic-date {
+.reply-date, .topic-date, .message-btn {
 	padding-left: 20px;
 	font-size: 12px;
 	color: gray;

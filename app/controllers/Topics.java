@@ -5,7 +5,6 @@ import java.util.List;
 
 import models.Board;
 import models.Topic;
-import play.Logger;
 import utils.DateUtil;
 import utils.json.JSONObject;
 import utils.json.JSONUtil;
@@ -30,10 +29,9 @@ public class Topics extends Application {
      */
     public static void getJSON(long id) {
         Topic topic = Topic.findById(id);
-        Logger.info(topic.date);
         JSONObject json =
                 JSONUtil.toJSONForObject(topic, "id", "title", "content", "date", "replyCount");
-        json.addSubObject("user", "nickName");
+        json.addSubObject("user", "nickName", "id");
         renderJSON(json.toString());
     }
 

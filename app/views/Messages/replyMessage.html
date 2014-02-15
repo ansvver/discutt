@@ -1,0 +1,42 @@
+<script type="text/javascript">
+	function checkForm() {
+	  if($("#msg-content").val().length < 3) {
+	    alert("回复内容至少3个字符！");
+	    return false;
+	  }
+	  return true;
+	}
+</script>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <b>发送给：
+    #{if session['USER_ID'].equals(lastMsg.fromUser.id+'')}
+      ${lastMsg.toUser.nickName}
+    #{/if}
+    #{else}
+      ${lastMsg.fromUser.nickName}
+    #{/else}
+    </b>
+  </div>
+  <div class="panel-body">
+    <!-- editor box -->
+    <form action="@{Messages.saveReply()}" method="post" onsubmit="return checkForm();">
+      <input type="hidden" name="message.fromUser.id" value="${session['USER_ID']}"/>
+      #{if session['USER_ID'].equals(lastMsg.fromUser.id+'')}
+      <input type="hidden" name="message.toUser.id" value="${lastMsg.toUser.id}"/>
+      #{/if}
+      #{else}
+      <input type="hidden" name="message.toUser.id" value="${lastMsg.fromUser.id}"/>
+      #{/else}
+       <div>
+        <div style="margin: 20px;">
+          <textarea id="msg-content" name="message.content" class="form-control"></textarea>
+        </div>
+        <div class="reply-btn">
+          <button type="submit" class="btn btn-default">提交回复</button>
+        </div>
+       </div><!-- editor box -->
+    </form>
+  </div>
+</div>

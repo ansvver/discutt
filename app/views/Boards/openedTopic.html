@@ -11,6 +11,9 @@
     <div class="topic-title">
       <b>{{openedTopic.user.nickName}}</b>
       <span class="topic-date">{{openedTopic.date}}</span>
+      <span class="message-btn">
+        <a href="#" ng-click="createMessage(openedTopic.user.id, openedTopic.user.nickName)" data-toggle="modal" data-target="#messageModal">私信</a>
+      </span>
       <span class="label label-default pull-right">楼主</span>
     </div>
     <div id="topic-body" class="topic-body" ng-bind-html="openedTopic.content"></div>
@@ -55,9 +58,10 @@
       <div class="reply-title">
         <b>{{r.user.nickName}}</b>
         <span class="reply-date">{{r.date}}</span>
+        <a href="#" ng-click="createMessage(r.user.id, r.user.nickName)" data-toggle="modal" data-target="#messageModal">私信</a>
         #{hasPermission resource:'/Replies/delete'}
-		    <button ng-click="deleteReply(r.id)" class="btn btn-xs btn-danger">删除</button>
-		    #{/hasPermission}
+	    <button ng-click="deleteReply(r.id)" class="btn btn-xs btn-danger">删除</button>
+	    #{/hasPermission}
         <span class="label label-default pull-right">{{r.id}}</span>
       </div>
       <div class="reply-body" ng-bind-html="r.content"></div>
@@ -81,3 +85,5 @@
     </div>
   </div>
 </div>
+
+#{include 'Messages/createMessage.html'/}

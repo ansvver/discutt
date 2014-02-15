@@ -20,12 +20,12 @@
   <div class="container-box row">
     <div class="col-md-4">
       <div class="panel panel-default" data-spy="affix">
-			  <div class="panel-heading">
-			  ${board.name}
-			  <!-- Button trigger modal -->
-			  #{if session['USER_ID'] != null}
-				<button class="pull-right btn btn-xs btn-success" 
-				        data-toggle="modal" data-target="#editModal">发布</button>
+	    <div class="panel-heading">
+		${board.name}
+		<!-- Button trigger modal -->
+		#{if session['USER_ID'] != null}
+			<button class="pull-right btn btn-xs btn-success" 
+				data-toggle="modal" data-target="#editModal">发布</button>
         #{/if}
         #{else}
         <a href="@{Users.login()}" class="pull-right btn btn-xs btn-success">登陆后可发布</a>

@@ -18,5 +18,7 @@ public class Globals {
     public static final int MSG_CODE_FAIL = 0;
     public static final int MSG_CODE_SUCCESS = 1;
     public static final int MSG_CODE_INFO = 2;
+    
+    public static final String HAS_UNOPENED_MESSAGE = "HAS_UNOPENED_MESSAGE";
 
 }

@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title: '我的私信' /}
+
+<div class="container-1100">
+
+  <div class="container-box row">
+    #{include 'Messages/messageList.html'/}    
+    <div class="col-md-8 minheight-600">
+      <div ng-hide="hideOpenedTopic">#{include 'Messages/replyMessage.html'/}</div>
+    </div><!-- col-md-8 -->
+  </div><!-- container-1100 -->
+  
+</div>
