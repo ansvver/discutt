@@ -148,7 +148,7 @@ function BoardIndexCtrl($scope, $http) {
       $("#wmd-preview-topic").empty();
       $scope.topic = new Topic();
       // 打开刚创建的Topic
-      $scope.openTopic(topic.id);
+      $scope.openTopic(topic);
     });
   };
 

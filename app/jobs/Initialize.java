@@ -64,6 +64,7 @@ public class Initialize extends Job<String> {
         anonymous.resources.add(Resource.createOrFetch("Users.register"));
         anonymous.resources.add(Resource.createOrFetch("Users.save"));
         anonymous.resources.add(Resource.createOrFetch("Users.checkEmail"));
+        anonymous.resources.add(Resource.createOrFetch("Users.checkNickName"));
         anonymous.resources.add(Resource.createOrFetch("Users.login"));
         anonymous.resources.add(Resource.createOrFetch("Users.logout"));
         anonymous.resources.add(Resource.createOrFetch("Users.loginProcess"));

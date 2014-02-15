@@ -47,8 +47,17 @@ function CheckNickName() {
 	if(!validator.fitLength($("#user\\.nickName").val(), 2, 8)) {
 		$("#nickName-text").html("<font color=red>昵称需要2到8个字符</font>");
 		return false;
+	}else{
+	  // 后台验证用户昵称是否重复
+    $.post(ctx+"Users/checkNickName",{nickName:$("#user\\.nickName").val()},function(result){
+      if(result.valid){
+        $("#nickName-text").html("<font color=green>正确</font>");
+      }else{
+        $("#nickName-text").html("<font color=red>该昵称已被占用</font>");
+      }
+    });
 	}
-	$("#nickName-text").html("<font color=green>正确</font>");
+	
 	return true;
 }
 

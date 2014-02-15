@@ -62,6 +62,15 @@ public class Users extends Application {
             renderJSON("{\"valid\":1}");
         }
     }
+    
+    public static void checkNickName(String nickName) {
+        long count = User.find("nickName = ?", nickName).fetch(1).size();
+        if (count > 0) {
+            renderJSON("{\"valid\":0}");
+        } else {
+            renderJSON("{\"valid\":1}");
+        }
+    }
 
     public static void save(@Valid User user) {
         if (validation.hasErrors()) {
