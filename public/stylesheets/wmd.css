@@ -73,18 +73,15 @@
     left: 300px;
 }
 
-
-
-
-.wmd-prompt-background
-{
-  background-color: Black;
+.wmd-prompt-background {
+  background-color: black;
+  z-index: 2000!important;
 }
 
-.wmd-prompt-dialog
-{
+.wmd-prompt-dialog {
   border: 1px solid #999999;
   background-color: #F5F5F5;
+  z-index: 2100!important;
 }
 
 .wmd-prompt-dialog > div {
