@@ -35,7 +35,11 @@ public class Application extends Controller {
      */
     @Before
     public static void checkPermission() {
-        Logger.info(request.headers.get("X-Real-IP") + " " + request.action);
+//        Logger.info(request.headers.get("X-Real-IP") + " " + request.action);
+        Logger.info("----------");
+        for (String key : request.headers.keySet()) {
+            Logger.info(key + " = " + request.headers.get(key));
+        }
         // 检查是否是匿名用户可访问的页面
         if (SecurityUtils.checkAnonymous(request.action, request.method)) return;
         User user = currentUser();
