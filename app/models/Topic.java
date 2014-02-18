@@ -30,9 +30,6 @@ public class Topic extends Model {
 
     public String lastUpdate;
 
-    @Transient
-    public int replyCount = 0;
-
     @ManyToOne
     public Board board;
 
@@ -41,4 +38,9 @@ public class Topic extends Model {
 
     @ManyToOne(fetch = FetchType.EAGER)
     public User user;
+    
+    @Transient
+    public int replyCount = 0;
+    @Transient
+    public boolean opened = true;
 }

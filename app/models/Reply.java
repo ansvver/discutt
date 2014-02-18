@@ -3,6 +3,7 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import models.security.User;
 import play.data.validation.Required;
@@ -22,5 +23,9 @@ public class Reply extends Model {
 
     @ManyToOne
     public User user;
+    
+    @Transient
+    public int floor;
+    public boolean deleted = false;
 
 }

@@ -36,3 +36,7 @@ button, input {
   margin-top: 50px;
   font-size: 15px;
 }
+
+.bold {
+	font-weight: 600;
+}

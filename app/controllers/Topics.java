@@ -4,7 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import models.Board;
+import models.ReadRecord;
 import models.Topic;
+import models.security.User;
 import utils.DateUtil;
 import utils.json.JSONObject;
 import utils.json.JSONUtil;
@@ -56,8 +58,17 @@ public class Topics extends Application {
         }
         for (Topic topic : topics) {
             topic.replyCount = topic.replies.size();
+            User user = currentUser();
+            if(user != null){
+                ReadRecord record = ReadRecord.find("user.id = ? and topic.id = ?",user.id, topic.id).first();
+                if(record != null) {
+                    if(record.lastReplySize < topic.replies.size()) {
+                        topic.opened = false;
+                    }
+                }
+            }
         }
-        renderJSON(JSONUtil.toJSONForList(topics, "id", "title", "replyCount"));
+        renderJSON(JSONUtil.toJSONForList(topics, "id", "opened", "title", "replyCount"));
     }
 
     /**

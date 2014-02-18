@@ -156,6 +156,7 @@ function BoardIndexCtrl($scope, $http) {
    * 打开Topic.
    */
   $scope.openTopic = function(topic) {
+    topic.opened = true;
     // 获取Topic信息
     $http({
       method: 'GET',

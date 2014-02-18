@@ -21,22 +21,23 @@
     <div class="col-md-4">
       <div class="panel panel-default" data-spy="affix">
 	    <div class="panel-heading">
-		${board.name}
-		<!-- Button trigger modal -->
-		#{if session['USER_ID'] != null}
-			<button class="pull-right btn btn-xs btn-success" 
-				data-toggle="modal" data-target="#editModal">发布</button>
-        #{/if}
-        #{else}
-        <a href="@{Users.login()}" class="pull-right btn btn-xs btn-success">登陆后可发布</a>
-        #{/else}
-			  </div>
+		  ${board.name}
+  		  <!-- Button trigger modal -->
+  		  #{if session['USER_ID'] != null}
+  			<button class="pull-right btn btn-xs btn-success" 
+  				data-toggle="modal" data-target="#editModal">发布</button>
+          #{/if}
+          #{else}
+          <a href="@{Users.login()}" class="pull-right btn btn-xs btn-success">登陆后可发布</a>
+          #{/else}
+          <button style="margin-right: 10px;" ng-click="listTopics(${board.id}, topicPage)" class="pull-right btn btn-xs btn-info">刷新</button>
+		</div>
 			  <div class="panel-body topic-list">
 		       <table class="table table-hover table-condensed">
 		         <tr ng-repeat="t in topics" 
 		             ng-click="openTopic(t)"
 		             ng-class="{'active' : t.selected}" class="topic-links">
-		           <td><a>{{t.title}}</a></td>
+		           <td><a ng-class="{'bold':!t.opened}">{{t.title}}</a></td>
 		           <td><span>+ {{t.replyCount}}</span></td>
 		         </tr>
 		       </table>

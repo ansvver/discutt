@@ -19,7 +19,7 @@
     <div id="topic-body" class="topic-body" ng-bind-html="openedTopic.content"></div>
 
     <!-- editor box -->
-     <div>
+     <div style="padding: 0 10px;">
       <div class="wmd-panel">
        <div id="wmd-button-bar-reply"></div>
        <textarea ng-model="reply.content"
@@ -62,7 +62,7 @@
         #{hasPermission resource:'/Replies/delete'}
 	    <button ng-click="deleteReply(r.id)" class="btn btn-xs btn-danger">删除</button>
 	    #{/hasPermission}
-        <span class="label label-default pull-right">{{r.id}}</span>
+        <span class="label label-default pull-right">{{r.floor}}</span>
       </div>
       <div class="reply-body" ng-bind-html="r.content"></div>
      </div><!--  Reply List -->
