@@ -3,10 +3,8 @@ package controllers;
 import java.util.Date;
 import java.util.List;
 
-import models.ReadRecord;
 import models.Reply;
 import models.Topic;
-import models.security.User;
 import utils.DateUtil;
 import utils.json.JSONObject;
 import utils.json.JSONUtil;
@@ -52,16 +50,16 @@ public class Replies extends Application {
                         new String[] {"id", "floor", "content", "date"}, 
                             "user", new String[] {"nickName","id"});
         // 更新当前用户的阅读记录
-        User user = currentUser();
-        if(user != null){
-            ReadRecord record = ReadRecord.find("user.id = ? and topic.id = ?", user.id, topicID).first();
-            if(record == null) {
-                Topic topic = Topic.findById(topicID);
-                record = new ReadRecord(user, topic);
-            }
-            record.lastReplySize = replies.size();
-            record.save();
-        }
+//        User user = currentUser();
+//        if(user != null){
+//            ReadRecord record = ReadRecord.find("user.id = ? and topic.id = ?", user.id, topicID).first();
+//            if(record == null) {
+//                Topic topic = Topic.findById(topicID);
+//                record = new ReadRecord(user, topic);
+//            }
+//            record.lastReplySize = replies.size();
+//            record.save();
+//        }
         renderJSON(json);
     }
 
