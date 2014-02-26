@@ -17,5 +17,6 @@ public class ReadRecord extends Model {
     public ReadRecord(User user, Topic topic){
         this.user = user;
         this.topic = topic;
+        lastReplySize = topic.replies.size();
     }
 }

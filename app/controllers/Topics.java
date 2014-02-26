@@ -32,10 +32,16 @@ public class Topics extends Application {
     public static void getJSON(long id) {
         Topic topic = Topic.findById(id);
         // 更新阅读记录
-        if(currentUser() != null){
-            ReadRecord record = new ReadRecord(currentUser(), topic);
+        User user = currentUser();
+        if(user != null){
+            ReadRecord record = ReadRecord.find("user.id = ? and topic.id = ?", user.id, topic.id).first();
+            if(record == null) {
+                record = new ReadRecord(user, topic);
+            }
+            record.lastReplySize = topic.replies.size();
             record.save();
         }
+        
         JSONObject json =
                 JSONUtil.toJSONForObject(topic, "id", "title", "content", "date", "replyCount");
         json.addSubObject("user", "nickName", "id");
