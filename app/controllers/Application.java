@@ -5,7 +5,6 @@ import java.util.List;
 import models.Board;
 import models.Message;
 import models.security.User;
-import play.Logger;
 import play.mvc.Before;
 import play.mvc.Controller;
 import utils.Globals;
@@ -35,10 +34,6 @@ public class Application extends Controller {
      */
     @Before
     public static void checkPermission() {
-        Logger.info(request.headers.get("x-real-ip") + " " + request.action);
-//        for (String key : request.headers.keySet()) {
-//            Logger.info(key + " = " + request.headers.get(key));
-//        }
         // 检查是否是匿名用户可访问的页面
         if (SecurityUtils.checkAnonymous(request.action, request.method)) return;
         User user = currentUser();

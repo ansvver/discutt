@@ -31,6 +31,11 @@ public class Topics extends Application {
      */
     public static void getJSON(long id) {
         Topic topic = Topic.findById(id);
+        // 更新阅读记录
+        if(currentUser() != null){
+            ReadRecord record = new ReadRecord(currentUser(), topic);
+            record.save();
+        }
         JSONObject json =
                 JSONUtil.toJSONForObject(topic, "id", "title", "content", "date", "replyCount");
         json.addSubObject("user", "nickName", "id");
@@ -56,6 +61,7 @@ public class Topics extends Application {
                     Topic.find("board.id = ? order by lastUpdate desc", boardID).fetch(page,
                             pageSize);
         }
+
         for (Topic topic : topics) {
             topic.replyCount = topic.replies.size();
             User user = currentUser();
